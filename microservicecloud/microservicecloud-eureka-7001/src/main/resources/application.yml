@@ -1,0 +1,54 @@
+#需登录进入euraka注册中心 要添加spring security相关依赖
+security:
+  basic:
+    enabled: true
+  user:
+    name: discovery
+    password: 3GfhPZQifTpVcu
+
+# 服务端口号    
+server:
+  port: 7001
+  undertow:
+    max-http-post-size: 0
+    # 设置IO线程数, 它主要执行非阻塞的任务,它们会负责多个连接, 默认设置每个CPU核心一个线程,数量和CPU 内核数目一样即可
+    io-threads: 2
+    # 阻塞任务线程池, 当执行类似servlet请求阻塞操作, undertow会从这个线程池中取得线程,它的值设置取决于系统的负载  io-threads*8
+    worker-threads: 16
+    # 以下的配置会影响buffer,这些buffer会用于服务器连接的IO操作,有点类似netty的池化内存管理
+    # 每块buffer的空间大小,越小的空间被利用越充分
+    buffer-size: 1024
+    # 每个区分配的buffer数量 , 所以pool的大小是buffer-size * buffers-per-region
+    #   buffers-per-region: 1024 # 这个参数不需要写了
+    # 是否分配的直接内存
+    direct-buffers: true
+    
+eureka:
+  server:
+    # 自我保护机制  true:开启:一旦进入保护模式,不会注销任何微服务  false:禁用
+    enable-self-preservation: true
+    # 清理无效节点 默认60s 。防止应用实例实例异常挂掉,没能在挂掉之前告知eureka服务器
+    eviction-interval-timer-in-ms: 5000 # 5s
+    # 不开启缓存
+    use-read-only-response-cache: false
+    
+  client:
+    # 是否注册到其他eureka服务端,默认为true
+    registerWithEureka: false
+    # 是否拉取eureka服务器上注册表的注册信息,默认为true
+    fetchRegistry: false
+    # 拉取eureka服务器的注册信息的间隔时间,默认30s
+    registry-fetch-interval-seconds: 30
+    serviceUrl: 
+      # 不用手动排除自身的服务发现地址,server解析集群地址时会过滤掉自身的服务地址
+      defaultZone: http://${security.user.name}:${security.user.password}:@eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/ 
+    
+  instance:
+    # 指定eureka实例的主机名
+    hostname: eureka7001
+    # 显示ip 如果地址直接用的ip,则不能为true,会影响eureka集群正常工作
+#    prefer-ip-address: true
+    # 续约更新时间间隔,默认30s
+    lease-renewal-interval-in-seconds: 5
+    # 续约到期时间,默认90s
+    lease-expiration-duration-in-seconds: 10          

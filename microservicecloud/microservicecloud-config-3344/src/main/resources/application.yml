@@ -1,0 +1,32 @@
+server:
+  port: 3344 #服务端口号
+
+spring:
+  application:
+    name: microservicecloud-config #服务实例名
+  #连接到git库  
+  cloud:
+    config:
+      label: master #分支
+      server:
+        git:
+          searchPaths: microservicecloud-config #路径,多个用,隔开
+          uri: https://github.com/Ecolv/microservicecloud-config.git #https地址
+          
+#          uri: git@github.com:Ecolv/microservicecloud-config.git #ssh链接地址  
+#          host-key-algorithm: ssh-rsa
+#          ignoreLocalSshSettings: true #重要！忽略本地ssh配置，使用下面密钥。方便移植（如：容器部署）
+#          strictHostKeyChecking: false
+#          privateKey: |
+#                       -----BEGIN RSA PRIVATE KEY-----
+#                       AAAAB3NzaC1yc2EAAAADAQABAAABAQC7fULxxkmW4uBKP+tLPvb6Qodr
+#                       suH0sCSxl66dzxsRIM/zXkJPBC8c/SVE9XNhnC+H0koRidq5NBCBb65i
+#                       TVU7TLwGul1+pTEHXbFslpWLDvdnz4jOIx/dSph15NnMYdRyzwZNK+va
+#                       U6B6mwUkPCJG2dC6mql6J6AE6Y+puNX0IIqs7sO5543SWcAh8Awv0XzL
+#                       zI9zfMd/3ZmzZdMWX5b9vne/oSqTkY4qtnhxMM2ncgP7CiwRFdST+tQc
+#                       p/Wze0KLJSL/Kc5Gesgw9Ya4+4bDIvvWMxB3jQHRrto0/qKykqRbk0ip
+#                       31Khbl8PXNkeYzGob+HK66SIP4nt8vYoe+g7 Ecolv
+#                       -----END RSA PRIVATE KEY-----
+          
+
+      

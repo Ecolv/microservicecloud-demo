@@ -1,0 +1,5 @@
+com\myrule\MyselfRule.class
+com\myrule\MyRoundRobinRule.class
+com\springcloud\UserConsumerApplication.class
+com\springcloud\cfgbeans\ConfigBean.class
+com\springcloud\controller\User_Consumer_Controller.class

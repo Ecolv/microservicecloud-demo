@@ -1,0 +1,29 @@
+server:
+  port: 9527
+
+#服务名
+spring:
+  application:
+    name: microservicecloud-zuul-gateway
+    
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/      
+  instance:
+    instance-id: microservicecloud-zuul-gateway-9527
+    hostname: zuul9527
+    #显示ip
+    prefer-ip-address: true
+    
+#代理    
+zuul:
+  #统一前缀
+  prefix: /myzuul 
+  #忽略真实服务名 
+  #单个具体，多个用"*" 
+  ignored-services: "*" # miscroservicecloud-provider-user
+  routes:
+    myuser.serviceId: miscroservicecloud-provider-user
+    myuser.path: /myuser/**
+    

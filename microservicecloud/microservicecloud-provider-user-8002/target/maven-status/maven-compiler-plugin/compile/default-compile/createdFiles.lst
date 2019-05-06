@@ -1,0 +1,4 @@
+com\springcloud\controller\UserController.class
+com\springcloud\dao\UserDao.class
+com\springcloud\service\UserService.class
+com\springcloud\UserProviderApplication_8002.class

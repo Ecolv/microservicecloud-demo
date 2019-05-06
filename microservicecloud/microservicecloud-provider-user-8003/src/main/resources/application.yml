@@ -1,0 +1,37 @@
+server:
+  port: 8003
+  
+mybatis:
+  config-location: classpath:mybatis/mybatis.xml
+  type-aliases-package: com.springcloud.entity    
+  mapper-locations: 
+  - classpath:mybatis/mapper/*Mapper.xml
+
+spring:
+  application:
+    name: miscroservicecloud-provider-user
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloudDB3?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 1234
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-idle: 10
+      max-wait-millis: 2000
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/  
+  instance:
+    instance-id: miscroservicecloud-provider-user-8003
+    prefer-ip-address: true  
+info:
+  app.name: miscroservicecloud-provider-user-8003
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$            
+

@@ -1,0 +1,13 @@
+#系统级资源配置项
+
+spring:
+  cloud:
+    config:
+      name: microservicecloud-config-user-client
+      profile: dev
+#      profile: test
+      label: master
+      #微服务启动后会先去找3344服务,通过springCloudConfig获取github的地址
+      uri: http://config3344:3344
+  
+    
