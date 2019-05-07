@@ -1,5 +1,6 @@
 drop database if exists cloudDB2;
 create database cloudDB2 default character set utf8;
+use cloudDB2;
 create table user(
 	id bigint primary key auto_increment,
 	uname varchar(20),
